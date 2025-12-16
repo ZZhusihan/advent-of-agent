@@ -13,10 +13,13 @@
 - 可以使用 `uvx adk web` 命令启动 Web 界面与智能体交互
 - 支持使用 Gemini 模型（如 `gemini-2.5-flash` 或 `gemini-3`）
 - 使用 `uvx` 可以直接运行 ADK 命令，无需预先安装 `google-adk` 包
+- 在 `root_agent.yaml` 中加入 `tools` 字段即可配置工具
 
 ## Challenges Faced
 
-- 网站上给的 command 是错误的，运行 `uvx --from google-adk adk web` 时默认时读取 a directory of agents，而不是在 agent directory。
+- 后续使用方便起见，这次直接安装了完整的 `google-adk` 包
+- 注意⚠️：其中的 `MCP` 组件强制要求Python版本在**3.10**以上，新建环境时要注意编译器的选择
+- 在Pycharm终端调用agent互动时，无法显式输出日志，只能通过prompt要求输出思考过程
 
 ## Code Examples
 
@@ -39,6 +42,9 @@ name: root_agent
 description: A helpful assistant for user questions.
 instruction: Answer user questions to the best of your knowledge.
 model: gemini-2.5-flash
+
+tools:
+  - name: google_search
 ```
 
 ## Resources
